@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RotaDocente | Mobilidade compartilhada</title>
+
+<style>
+:root {
+  --azul: #173b68;
+  --azul2: #24558b;
+  --claro: #edf4fb;
+  --fundo: #f5f7fa;
+  --texto: #26364a;
+  --cinza: #66758a;
+  --borda: #dce4ed;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+header {
+  background: white;
+  border-bottom: 1px solid var(--borda);
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  color: var(--azul);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.logo span { color: #4d8bc5; }
+
+nav a {
+  color: var(--azul);
+  text-decoration: none;
+  margin-left: 22px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.hero {
+  background: linear-gradient(120deg, #173b68, #326b9e);
+  color: white;
+  padding: 75px 8%;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.hero small {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .85;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 52px);
+  margin: 18px 0;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 680px;
+  color: #e4edf7;
+}
+
+.botao {
+  display: inline-block;
+  background: white;
+  color: var(--azul);
+  padding: 14px 23px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 55px auto;
+  padding: 0 22px;
+}
+
+.titulo {
+  color: var(--azul);
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  color: var(--cinza);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin: 35px 0;
+}
+
+.card {
+  background: white;
+  padding: 24px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+}
+
+.card .icone {
+  font-size: 27px;
+}
+
+.card h3 {
+  color: var(--azul);
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--cinza);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.formulario {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 13px;
+  padding: 30px;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--azul);
+}
+
+.campo input,
+.campo select {
+  padding: 13px;
+  border: 1px solid var(--borda);
+  border-radius: 7px;
+  font-size: 14px;
+  width: 100%;
+  background: white;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid #9dc4e8;
+}
+
+.dias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.dias label {
+  font-weight: normal;
+  color: var(--texto);
+}
+
+.dias input { width: auto; }
+
+.botao-azul {
+  background: var(--azul);
+  color: white;
+  border: 0;
+  padding: 14px 24px;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 22px;
+  font-size: 15px;
+}
+
+.botao-azul:hover { background: var(--azul2); }
+
+.rotas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.rota {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.rota h3 { color: var(--azul); }
+
+.rota p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--cinza);
+}
+
+.excluir {
+  background: #fbeaea;
+  color: #a52b2b;
+  border: 0;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.aviso {
+  background: var(--claro);
+  padding: 17px;
+  border-radius: 8px;
+  color: var(--azul);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 22px;
+}
+
+footer {
+  background: #132f50;
+  color: white;
+  padding: 30px 8%;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media(max-width: 650px) {
+  header { padding: 18px 5%; }
+  nav a { margin: 0 10px 0 0; }
+  .hero { padding: 55px 7%; }
+  .grid-form { grid-template-columns: 1fr; }
+  .formulario { padding: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Rota<span>Docente</span></div>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#cadastro">Cadastrar rota</a>
+    <a href="#rotas">Rotas</a>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <small>Mobilidade • Colaboração • Conexão</small>
+    <h1>O caminho até a escola pode ser compartilhado.</h1>
+    <p>
+      A RotaDocente é uma proposta de plataforma digital
+      pensada para auxiliar professoras na organização de
+      deslocamentos compartilhados, incentivando a colaboração
+      e a construção de alternativas de mobilidade.
+    </p>
+    <a class="botao" href="#cadastro">Conheça a proposta</a>
+  </div>
+</section>
+
+<main class="container" id="sobre">
+
+  <h2 class="titulo">Sobre a RotaDocente</h2>
+  <p class="subtitulo">
+    Uma iniciativa que busca aproximar profissionais da educação
+    que possuem trajetos, horários ou regiões de deslocamento
+    semelhantes.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icone">🤝</div>
+      <h3>Colaboração</h3>
+      <p>Incentivo à organização coletiva de deslocamentos entre professoras.</p>
+    </div>
+
+    <div class="card">
+      <div class="icone">🕒</div>
+      <h3>Organização</h3>
+      <p>Registro de informações sobre regiões, destinos e horários de deslocamento.</p>
+    </div>
+
+    <div class="card">
+      <div class="icone">🌱</div>
+      <h3>Benefícios</h3>
+      <p>Possibilidade de contribuir para a redução do cansaço, do estresse e dos custos.</p>
+    </div>
+  </div>
+
+</main>
+
+<section class="container" id="cadastro">
+  <h2 class="titulo">Cadastre uma rota</h2>
+  <p class="subtitulo">
+    Preencha as informações para demonstrar como seria o registro
+    de um deslocamento na RotaDocente.
+  </p>
+
+  <div class="formulario">
+    <form id="formRota">
+
+      <div class="grid-form">
+
+        <div class="campo">
+          <label for="nome">Nome da professora</label>
+          <input id="nome" required placeholder="Digite seu nome">
+        </div>
+
+        <div class="campo">
+          <label for="origem">Região ou bairro de origem</label>
+          <input id="origem" required placeholder="Ex.: Cajuru">
+        </div>
+
+        <div class="campo">
+          <label for="referencia">Ponto de referência</label>
+          <input id="referencia" required placeholder="Ex.: Terminal do Cajuru">
+        </div>
+
+        <div class="campo">
+          <label for="destino">Destino ou local de trabalho</label>
+          <input id="destino" required placeholder="Ex.: Escola Municipal">
+        </div>
+
+        <div class="campo">
+          <label for="horario">Horário de saída</label>
+          <input id="horario" type="time" required>
+        </div>
+
+        <div class="campo">
+          <label for="turno">Período</label>
+          <select id="turno" required>
+            <option value="">Selecione</option>
+            <option>Manhã</option>
+            <option>Tarde</option>
+            <option>Noite</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="campo" style="margin-top:22px">
+        <label>Dias de deslocamento</label>
+        <div class="dias">
+          <label><input type="checkbox" name="dia" value="Segunda"> Segunda</label>
+          <label><input type="checkbox" name="dia" value="Terça"> Terça</label>
+          <label><input type="checkbox" name="dia" value="Quarta"> Quarta</label>
+          <label><input type="checkbox" name="dia" value="Quinta"> Quinta</label>
+          <label><input type="checkbox" name="dia" value="Sexta"> Sexta</label>
+        </div>
+      </div>
+
+      <button class="botao-azul" type="submit">Cadastrar rota</button>
+    </form>
+
+    <div class="aviso">
+      <strong>Atenção:</strong> esta é uma demonstração experimental.
+      Não compartilhe dados pessoais ou informações de contato reais.
+      Os registros ficam armazenados somente no navegador utilizado.
+    </div>
+  </div>
+</section>
+
+<section class="container" id="rotas">
+  <h2 class="titulo">Rotas cadastradas</h2>
+  <p class="subtitulo">
+    Visualização dos registros realizados nesta demonstração.
+  </p>
+
+  <div class="rotas" id="listaRotas">
+    <p class="subtitulo">Nenhuma rota cadastrada até o momento.</p>
+  </div>
+</section>
+
+<footer>
+  <strong>RotaDocente</strong>
+  <p>Uma proposta de mobilidade compartilhada entre profissionais da educação.</p>
+  <p>Projeto acadêmico experimental • 2026</p>
+</footer>
+
+<script>
+const formulario = document.getElementById("formRota");
+const lista = document.getElementById("listaRotas");
+
+let rotas = [];
+
+try {
+  rotas = JSON.parse(localStorage.getItem("rotasDocente")) || [];
+  if (!Array.isArray(rotas)) rotas = [];
+} catch (erro) {
+  rotas = [];
+}
+
+function salvar() {
+  localStorage.setItem("rotasDocente", JSON.stringify(rotas));
+}
+
+function mostrarRotas() {
+  lista.innerHTML = "";
+
+  if (rotas.length === 0) {
+    lista.innerHTML =
+      '<p class="subtitulo">Nenhuma rota cadastrada até o momento.</p>';
+    return;
+  }
+
+  rotas.forEach((rota, indice) => {
+    const cartao = document.createElement("article");
+    cartao.className = "rota";
+
+    const titulo = document.createElement("h3");
+    titulo.textContent = rota.nome;
+
+    const informacoes = document.createElement("p");
+    informacoes.textContent =
+      "Origem: " + rota.origem +
+      "\nPonto de referência: " + rota.referencia +
+      "\nDestino: " + rota.destino +
+      "\nHorário: " + rota.horario +
+      "\nPeríodo: " + rota.turno +
+      "\nDias: " + rota.dias.join(", ");
+
+    informacoes.style.whiteSpace = "pre-line";
+
+    const excluir = document.createElement("button");
+    excluir.className = "excluir";
+    excluir.textContent = "Excluir registro";
+
+    excluir.addEventListener("click", function() {
+      rotas.splice(indice, 1);
+      salvar();
+      mostrarRotas();
+    });
+
+    cartao.appendChild(titulo);
+    cartao.appendChild(informacoes);
+    cartao.appendChild(excluir);
+    lista.appendChild(cartao);
+  });
+}
+
+formulario.addEventListener("submit", function(evento) {
+  evento.preventDefault();
+
+  const dias = Array.from(
+    document.querySelectorAll('input[name="dia"]:checked')
+  ).map(campo => campo.value);
+
+  if (dias.length === 0) {
+    alert("Selecione pelo menos um dia de deslocamento.");
+    return;
+  }
+
+  const novaRota = {
+    nome: document.getElementById("nome").value.trim(),
+    origem: document.getElementById("origem").value.trim(),
+    referencia: document.getElementById("referencia").value.trim(),
+    destino: document.getElementById("destino").value.trim(),
+    horario: document.getElementById("horario").value,
+    turno: document.getElementById("turno").value,
+    dias: dias
+  };
+
+  rotas.push(novaRota);
+  salvar();
+  mostrarRotas();
+  formulario.reset();
+
+  alert("Rota cadastrada nesta demonstração!");
+});
+
+mostrarRotas();
+</script>
+
+</body>
+</html>
