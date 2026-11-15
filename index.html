@@ -59,9 +59,7 @@ nav a {
   padding: 75px 8%;
 }
 
-.hero-content {
-  max-width: 850px;
-}
+.hero-content { max-width: 850px; }
 
 .hero small {
   letter-spacing: 2px;
@@ -124,9 +122,7 @@ nav a {
   border-radius: 12px;
 }
 
-.card .icone {
-  font-size: 27px;
-}
+.card .icone { font-size: 27px; }
 
 .card h3 {
   color: var(--azul);
@@ -293,7 +289,6 @@ footer {
 </section>
 
 <main class="container" id="sobre">
-
   <h2 class="titulo">Sobre a RotaDocente</h2>
   <p class="subtitulo">
     Uma iniciativa que busca aproximar profissionais da educação
@@ -320,7 +315,6 @@ footer {
       <p>Possibilidade de contribuir para a redução do cansaço, do estresse e dos custos.</p>
     </div>
   </div>
-
 </main>
 
 <section class="container" id="cadastro">
@@ -332,7 +326,6 @@ footer {
 
   <div class="formulario">
     <form id="formRota">
-
       <div class="grid-form">
 
         <div class="campo">
@@ -358,6 +351,11 @@ footer {
         <div class="campo">
           <label for="horario">Horário de saída</label>
           <input id="horario" type="time" required>
+        </div>
+
+        <div class="campo">
+          <label for="entrada">Horário de entrada no trabalho</label>
+          <input id="entrada" type="time" required>
         </div>
 
         <div class="campo">
@@ -449,7 +447,8 @@ function mostrarRotas() {
       "Origem: " + rota.origem +
       "\nPonto de referência: " + rota.referencia +
       "\nDestino: " + rota.destino +
-      "\nHorário: " + rota.horario +
+      "\nHorário de saída: " + rota.horario +
+      "\nHorário de entrada: " + rota.entrada +
       "\nPeríodo: " + rota.turno +
       "\nDias: " + rota.dias.join(", ");
 
@@ -490,6 +489,7 @@ formulario.addEventListener("submit", function(evento) {
     referencia: document.getElementById("referencia").value.trim(),
     destino: document.getElementById("destino").value.trim(),
     horario: document.getElementById("horario").value,
+    entrada: document.getElementById("entrada").value,
     turno: document.getElementById("turno").value,
     dias: dias
   };
